@@ -1,0 +1,50 @@
+<div class="content">
+    <div id="formFields" class="formFields">
+        <form #airplane="ngForm" (ngSubmit)="onSubmit(airplane.value)">
+            <div class="formFieldGroup">
+                <input type="hidden" id="Id" name="Id" ngModel />
+                <input type="hidden" id="CreationDate" name="CreationDate" ngModel />
+
+                <p>
+                    <label for="Modelo">Modelo:</label></p>
+                <p>
+                    <input type="text" id="Model" name="Model" class="formField" placeholder="Modelo" required ngModel/>
+                </p>
+            </div>
+            <div class="formFieldGroup">
+                <p>
+                    <label for="QtdPassengers">Quantidade de passageiros:</label>
+                </p>
+                <p>
+                    <input type="text" id="QtdPassengers" name="QtdPassengers" class="formField" placeholder="Quantidade de passageiross" required ngModel/>
+                </p>
+            </div>
+            <input type="submit" value="Salvar" />
+        </form>
+    </div>
+    <button type="button" id="btnAddAirplane">Adicionar Aeronave</button>
+</div>
+
+<div id="divAirplanes">
+    <h2>
+        Aeronaves
+    </h2>
+
+
+    <table>
+        <tr>
+            <th>Código do Avião</th>
+            <th>Modelo</th>
+            <th>Quantidade de passageiros</th>
+            <th>Data de criação do registro</th>
+        </tr>
+        <tr *ngFor="let airplane of _airplanes">
+            <td>{{airplane.id}}</td>
+            <td>{{airplane.model}}</td>
+            <td>{{airplane.qtdPassengers}}</td>
+            <td>{{airplane.creationDate}}</td>
+            <td><button type="button" id="btnEdit" (click)="onEditAirplane(airplane)"><span>Edit</span></button></td>
+            <td><button id="btnDelete" type='button' (click)="onDeleteAirplane(airplane)"><span>Delete</span></button></td>
+        </tr>
+    </table>
+</div>

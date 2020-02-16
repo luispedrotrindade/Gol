@@ -56,18 +56,31 @@ namespace Gol_WebAPI.Controllers
         [HttpPost]
         public ActionResult Post([FromBody]Airplane airplane)
         {
-            airplane.CreationDate = DateTime.Now;
-            appAirPlane.Add(airplane);
-            return StatusCode(200, 1);
-
+            try
+            {
+                airplane.CreationDate = DateTime.Now;
+                appAirPlane.Add(airplane);
+                return StatusCode(200, 1);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         // PUT: api/Airplane/5
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody]Airplane airplane)
         {
-            appAirPlane.Update(airplane);
-            return StatusCode(200);
+            try
+            {
+                appAirPlane.Update(airplane);
+                return StatusCode(200);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         // DELETE: api/ApiWithActions/5
@@ -78,9 +91,5 @@ namespace Gol_WebAPI.Controllers
             appAirPlane.Delete(airplane);
             return StatusCode(200);
         }
-    }
-    public class Teste
-    {
-        public string teste { get; set; }
     }
 }

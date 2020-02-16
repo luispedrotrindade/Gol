@@ -35,10 +35,11 @@ namespace Infra.Repository.Airplane
         {
             using (var db = new ContextBase(_OptionsBuider.Options))
             {
+                var id = new SqlParameter("@Id", Entity.Id);
                 var model = new SqlParameter("@Model", Entity.Model);
                 var qtdPassengers = new SqlParameter("@QtdPassengers", Entity.QtdPassengers);
                 var creationDate = new SqlParameter("@CreationDate", Entity.CreationDate);
-                db.Database.ExecuteSqlCommand("UpdateAirplane @Model, @QtdPassengers, @CreationDate", model, qtdPassengers, creationDate);
+                db.Database.ExecuteSqlCommand("UpdateAirplane @Id, @Model, @QtdPassengers, @CreationDate", id, model, qtdPassengers, creationDate);
                 db.SaveChanges();
             }
         }
