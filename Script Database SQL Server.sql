@@ -3,7 +3,7 @@ go
 use Gol
 
 go
-create table Airplane(
+create table Anuncio(
 	Id int primary key identity,
 	Model varchar(100),
 	QtdPassengers int,
@@ -11,7 +11,7 @@ create table Airplane(
 ) 
 go 
 
-create procedure CreateAirplane
+create procedure CreateAnuncio
 (
 @Model varchar(100),
 @QtdPassengers int,
@@ -19,7 +19,7 @@ create procedure CreateAirplane
 )
 as
 Begin 
-Insert into Airplane (Model
+Insert into Anuncio (Model
 					 ,QtdPassengers
 					 ,CreationDate)
 	           values(@Model
@@ -32,12 +32,12 @@ go
 create procedure ListAll
 as
 Begin
-select * from Airplane
+select * from Anuncio
 end
 
 GO
 
-create procedure UpdateAirplane
+create procedure UpdateAnuncio
 (
 @Id int,
 @Model varchar(100),
@@ -46,7 +46,7 @@ create procedure UpdateAirplane
 )
 as
 Begin 
-update  Airplane set Model = @Model,
+update  Anuncio set Model = @Model,
 				     QtdPassengers = @QtdPassengers,
 					 @CreationDate = @CreationDate
 		
@@ -55,13 +55,13 @@ end
 
 GO
 
-create procedure DeleteAirplane
+create procedure DeleteAnuncio
 (
 @Id int
 )
 as
 Begin 
-delete from  Airplane where Id = @Id
+delete from  Anuncio where Id = @Id
 end
 
 GO
@@ -72,5 +72,5 @@ create procedure GetById
 )
 as
 Begin 
-select * from  Airplane  where Id = @Id
+select * from  Anuncio  where Id = @Id
 end
